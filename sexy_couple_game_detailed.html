@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sexy Couple Game</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #f4f4f4;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 2em;
+    }
+    h1 {
+      color: #ff3e6c;
+    }
+    .btn-group {
+      margin: 2em 0;
+    }
+    button {
+      background: #ff3e6c;
+      border: none;
+      color: white;
+      padding: 1em 1.5em;
+      margin: 0.5em;
+      font-size: 1em;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #ff1f54;
+    }
+    .challenge-box {
+      margin-top: 2em;
+      font-size: 1.3em;
+      background: #1f1f1f;
+      padding: 1.5em;
+      border-radius: 12px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      min-height: 100px;
+    }
+    .challenge-title {
+      font-weight: bold;
+      color: #ff3e6c;
+    }
+    .challenge-description {
+      color: #f4f4f4;
+      font-size: 1.1em;
+      margin-top: 1em;
+    }
+  </style>
+</head>
+<body>
+
+<h1>💋 Sexy Couple Game 💋</h1>
+
+<div class="btn-group">
+  <button onclick="startSexySequence()">🔥 Sexy Journey (8 Steps)</button>
+  <button onclick="showSexyRandom()">🎲 Sexy Random (1 from 50)</button>
+  <button onclick="showKinkyRandom()">😈 Kinky Random (1 from 15)</button>
+</div>
+
+<div class="challenge-box" id="challengeBox">
+  Click a button to begin...
+</div>
+
+<script>
+  const sexyList = [
+    {
+      title: "Kiss for 30 seconds",
+      description: "Take a moment to gently kiss each other for 30 seconds. Let the kiss be slow and passionate, with full attention to each other’s feelings.",
+    },
+    {
+      title: "Give a sensual massage",
+      description: "Offer each other a relaxing massage. Use your hands to explore and soothe your partner's muscles, adding some scented oils if you want.",
+    },
+    {
+      title: "Lick whipped cream off their body",
+      description: "Spread whipped cream on an area of your partner’s body and use only your tongue to slowly and sensually remove it.",
+    },
+    {
+      title: "Do a strip tease",
+      description: "Perform a sensual strip tease for your partner, slowly undressing while maintaining eye contact and teasing your partner with every movement.",
+    },
+    {
+      title: "Make out for 5 minutes",
+      description: "Take 5 minutes to make out passionately, focusing on exploring each other's lips, with soft touches and deep kisses.",
+    },
+    {
+      title: "Tease without touching",
+      description: "Build anticipation by teasing your partner with your body movements, sexy glances, and close proximity, but without any physical touch for now.",
+    },
+    {
+      title: "Blindfold and tease for 3 minutes",
+      description: "Blindfold your partner and tease them for 3 minutes with your hands, mouth, and words, leaving them guessing and craving more.",
+    },
+    {
+      title: "Use an ice cube to explore their body",
+      description: "Take an ice cube and trace it over your partner’s body. Watch their reactions to the cold sensation against their warm skin.",
+    },
+    {
+      title: "Whisper 3 fantasies",
+      description: "Whisper three of your deepest fantasies into your partner’s ear, being honest and open with each other. Let your words arouse and excite both of you.",
+    },
+    {
+      title: "Play with toys for 5 minutes",
+      description: "Introduce a toy into your play for 5 minutes, whether it's something you already own or something new to explore together.",
+    }
+  ];
+
+  const kinkyList = [
+    {
+      title: "Collar & Obey",
+      description: "Take on a dominant/submissive role. One partner wears a collar and the other gives commands that must be obeyed.",
+    },
+    {
+      title: "Orgasm Control",
+      description: "The dominant partner controls when the submissive can orgasm. No release until permission is given.",
+    },
+    {
+      title: "Face Sitting until satisfaction",
+      description: "The submissive partner will sit on the dominant's face, pleasing them until they are satisfied.",
+    },
+    {
+      title: "Be gagged and used as desired",
+      description: "Allow the dominant partner to gag you and use you as they desire, giving up control to them.",
+    },
+    {
+      title: "Get spanked 5 times for each disobedience",
+      description: "Disobedience earns you a spanking, 5 times per offense. The dominant partner controls the intensity.",
+    },
+    {
+      title: "Beg with words and body",
+      description: "Beg your partner for attention and pleasure, using both your words and body language to show how badly you want them.",
+    },
+    {
+      title: "Public Vibe Tease",
+      description: "Tease your partner with a vibrating toy, while keeping the environment as public as possible, adding a thrill of secrecy.",
+    },
+    {
+      title: "Dirty Talk Dictation",
+      description: "One partner gives explicit instructions for dirty talk, dictating exactly how the other should talk or behave.",
+    },
+    {
+      title: "Mark them with dirty words and lick off",
+      description: "Use a marker or lipstick to write dirty words on your partner’s body, and then lick them off as part of the game.",
+    },
+    {
+      title: "Use candle wax safely",
+      description: "Using a safe candle, drip warm wax on your partner’s body, exploring their tolerance and enjoying the sensation together.",
+    }
+  ];
+
+  let sexySequence = [];
+  let sexyIndex = 0;
+
+  function startSexySequence() {
+    sexySequence = sexyList.sort(() => 0.5 - Math.random()).slice(0, 8);
+    sexyIndex = 0;
+    showNextSexyInSequence();
+  }
+
+  function showNextSexyInSequence() {
+    const box = document.getElementById("challengeBox");
+    if (sexyIndex < sexySequence.length) {
+      const challenge = sexySequence[sexyIndex];
+      box.innerHTML = `<span class="challenge-title">#${sexyIndex + 1}: ${challenge.title}</span><div class="challenge-description">${challenge.description}</div>`;
+      sexyIndex++;
+    } else {
+      box.innerHTML = `<span class="challenge-title">🔥 Done!</span> Click 'Sexy Journey' to start a new round.`;
+    }
+  }
+
+  function showSexyRandom() {
+    const rand = sexyList[Math.floor(Math.random() * sexyList.length)];
+    document.getElementById("challengeBox").innerHTML = `<span class="challenge-title">${rand.title}</span><div class="challenge-description">${rand.description}</div>`;
+  }
+
+  function showKinkyRandom() {
+    const rand = kinkyList[Math.floor(Math.random() * kinkyList.length)];
+    document.getElementById("challengeBox").innerHTML = `<span class="challenge-title">${rand.title}</span><div class="challenge-description">${rand.description}</div>`;
+  }
+
+  document.getElementById("challengeBox").addEventListener("click", () => {
+    if (sexyIndex > 0 && sexyIndex < sexySequence.length) {
+      showNextSexyInSequence();
+    }
+  });
+</script>
+
+</body>
+</html>
